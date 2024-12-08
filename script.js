@@ -5,6 +5,7 @@ const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
     const clearListButton = document.getElementById('clearList');
     const shoppingListContainer = document.getElementById('shoppingList');
 
+//Attaches event listeners to the "Add" button to capture user input and add items to the list. 
     const renderList = () => {
       shoppingListContainer.innerHTML = '';
       shoppingList.forEach((item, index) => {
@@ -12,6 +13,7 @@ const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
         listItem.textContent = item.name;
         listItem.className = item.purchased ? 'purchased' : '';
 
+//Attaches event listeners to list items to mark them as purchased
         const markPurchasedButton = document.createElement('button');
         markPurchasedButton.textContent = item.purchased ? 'Unmark' : 'Mark Purchased';
         markPurchasedButton.addEventListener('click', (e) => {
@@ -21,6 +23,7 @@ const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
           renderList();
         });
 
+    
         const editButton = document.createElement('button');
         editButton.textContent = 'Edit';
         editButton.addEventListener('click', (e) => {
@@ -50,6 +53,7 @@ const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
       });
     };
 
+    //persistence using local storage to save the list even after the page reloads.
     const saveList = () => {
       localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
     };
